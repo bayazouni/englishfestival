@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Description</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+<style>.comment {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.comment-content p {
+  margin: 0;
+}
+
+	#cover{
+ max-width: 100%;
+  height: auto;
+}
+		
+
+</style>
+</head>
+<body>
+	<header>
+		<h1>Description</h1>
+	</header>
+	<section id="lyrics">
+		<h2>General description</h2>
+
+<p>In the name of Allah . First of all, I must say that in this project that I presented to you, I did several things. First of all, I found a new formula for the area of the sphere, and to show the performance of this formula, the answers to the questions are the same with both the new formula and the original formula. I will show it and then I designed this website to give a general explanation. pi* As you know, the main formula for the area of a sphere is: Radius * Radius * 4</p>
+<br>
+<p>(New formula: (diameter*3/14 * (diameter-1))+(diameter*3/14</p>
+<br>
+<p>This formula is apparently more difficult than the original formula and complicates the work, but if I explain it, you will see that it is easier. First of all, they give us the radius to calculate the area of the sphere. Now we multiply the radius by 2 to get the diameter. We multiply the diameter by the pi number, which we consider to be 3/14, then we keep the result of this part, then in the next parenthesis, we just multiply the result of the previous expression by the minus one and add it to the result of the first parenthesis.</p>
+<br>
+<br>
+<h2>How to set up </h2>
+<img src="1d.jpg" alt="تصویر اول" style=" width: 450px;
+        height600px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">In the first step, I entered the replit.com site, which has a free host to run various programs, including the Telegram bot. </p>
+
+
+<img src="2d.jpg" alt="تصویر دوم" style=" width: 450px;
+        height600px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">In the second step, we click on the create repl button, then a page will appear where you can choose your programming language and a project will be created for you.</p>
+
+
+<img src="3d.jpg" alt="تصویر سوم" style=" width: 450px;
+        height600px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">Now, in the last step, we just need to write or upload our source code in the main.py file, then click on the run button, and our robot will be launched. Now, how was our robot launched? Through the bot token we got earlier from botfader</p>
+<br>
+<br>
+<br>
+<h2> Introducing a similar robot</h2>
+<P>Now this robot that I want to introduce to you, I also made it myself, but I started this robot without coding and through the free hosting of the data space-canva website, and this robot has limitations and is in Persian language, and only the area of spheres with a radius of one It counts up to ten </P>
+<br>
+<a href="http://t.me/Englishfestival2023_bot"> Similar robot</a>
+	
+</section>
+		
+	
+	<section id="comments">
+		<h2>Comments</h2>
+		<form onsubmit="event.preventDefault(); saveComment();">
+			<label for="name">name:</label>
+			<input type="text" id="name" name="name"><br><br>
+			<label for="comment">Opinion :</label><br>
+			<textarea id="comment" name="comment" rows="5" cols="40"></textarea><br><br>
+			<input type="submit" value="submit">
+		</form>
+		<div id="comments-list"></div>
+	</section>
+
+	<script>
+		function saveComment() {
+			var name = document.getElementById('name').value;
+			var comment = document.getElementById('comment').value;
+
+			// چک کردن مقادیر خالی
+			if (name.trim() === '' || comment.trim() === '') {
+				alert('لطفا نام و نظر خود را وارد کنید.');
+				return;
+			}
+
+			// ایجاد شیء برای نظر جدید
+			var newComment = {
+				name: name,
+				comment: comment
+			};
+
+			// دریافت نظرات قبلی از localStorage
+			var comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+			// اضافه کردن نظر جدید به آرایه نظرات
+			comments.push(newComment);
+
+			// ذخیره نظرات در localStorage
+			localStorage.setItem('comments', JSON.stringify(comments));
+
+			// بازسازی نمایش نظرات
+			displayComments();
+		}
+
+		function displayComments() {
+			// دریافت نظرات از localStorage
+			var comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+			// ایجاد HTML برای نمایش نظرات
+			var html = '';
+			for (var i = 0; i < comments.length; i++) {
+				html += '<div class="comment">';
+				html += '<h3>' + comments[i].name + '</h3>';
+				html += '<p>' + comments[i].comment + '</p>';
+				html += '</div>';
+			}
+
+			// نمایش نظرات در صفحه
+			document.getElementById('comments-list').innerHTML = html;
+		}
+
+		// نمایش نظرات هنگام بارگیری صفحه
+		document.addEventListener('DOMContentLoaded', function() {
+			displayComments();
+		});
+	</script>
+</body>
+</html>

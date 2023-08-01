@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>توضیحات</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+<style>.comment {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.comment-content p {
+  margin: 0;
+}
+
+	#cover{
+ max-width: 100%;
+  height: auto;
+}
+		
+
+</style>
+</head>
+<body>
+	<header>
+		<h1>توضیحات</h1>
+	</header>
+	<section id="lyrics">
+		<h2>توضیحات کلی</h2>
+
+<p>به نام خدا . اول از همه باید بگم من توی این پروژه ای که به شما اراِه دادم چند تا کار انجام دادم اول از همه فرمول جدید برای مساحت کره پیدا کردم و برای نشون دادن عملکرد این فرمول که جواب سوالات هم با فرمول جدید و هم با فرمول اصلی یکسان هست رو نشون بدم و بعد این وب سایت رو برای گذاشتن توضیحات کلی  طراحی کردم  pi*همونطور که میدونید فرمول اصلی مساحت کره اینه :شعاع *شعاع*4</p>
+<br>
+<p> (فرمول جدید : (قطر*3/14 * (قطر-1))+(قطر*3/14</p>
+<br>
+<p> این فرمول به ظاهر سخت تر از فرمول اصلی هست و کار رو پیچیده میکنه ولی اگه توضح بدم میبینید که راحت تر هست اول از همه برای محاسبه مساحت کره شعاع رو در اختیار ما میگذارند حالا ما شعاع رو ضربدر 2 کنیم قطر به دست میاد حالا ما قطر رو ضربدر عدد پی میکنیم که ما 3/14 در نظر میگیریم بعدش حاصل این قسمت رو نگه میداریم بعد تو پرانتز بعدی حاصل عبارت قبلی رو فقط کافیه ضربدر قطر منهای یک کنیم و با حاصل  پرانتز اول جمع کنیم </p>
+<br>
+<br>
+<h2> نحوه راه اندازی </h2>
+<img src="1d.jpg" alt="تصویر اول" style=" width: 450px;
+        height600px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">در مرحله اول وارد سایت replit.com  شدم که این سایت دارای هاست رایگان برای راه اندازی برنامه های مختلف از جمله ربات تلگرام هست </p>
+
+
+<img src="2d.jpg" alt="تصویر دوم" style=" width: 450px;
+        height600px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">در مرحله دوم روی دکمه create repl کلیک میکنیم بعدش یک صفحه میاره که اینجا شما زبان برنامه نویسی خودتونو انتخاب میکنید و برای شما یک پروژه ایجاد میشه</p>
+
+
+<img src="3d.jpg" alt="تصویر سوم" style=" width: 450px;
+        height600px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">حالا تو مرحله اخر فقط کافیه سورس کد هامون رو داخل فایل main.py  بنویسیم یا اپلود کنیم بعدش روی دکمه run  کلیک کنیم رباتمون راه اندازی میشه حالا رباتمون چطوری راه اندازی شد؟ از طریق توکن ربات که قبلا از بات فادر گرفتیم</p>
+<br>
+<br>
+<br>
+<h2> معرفی ربات مشابه </h2>
+<P>  حالا این ربات که میخوام بهتون معرفی کنم رو هم خودم ساختم منتها این ربات رو بدون کد نویسی  و از طریق هاست رایگان سایت data space-canva  راه اندازی کردم و این ربات محدودیت داره و به زبان فارسی هست و فقط مساحت کره هایی به شعاع یک تا ده رو محاسبه میکنه </P>
+<br>
+<a href="http://t.me/Englishfestival2023_bot"> ربات مشابه</a>
+	
+</section>
+		
+	
+	<section id="comments">
+		<h2>نظرات</h2>
+		<form onsubmit="event.preventDefault(); saveComment();">
+			<label for="name">نام:</label>
+			<input type="text" id="name" name="name"><br><br>
+			<label for="comment">پیام :</label><br>
+			<textarea id="comment" name="comment" rows="5" cols="40"></textarea><br><br>
+			<input type="submit" value="ارسال">
+		</form>
+		<div id="comments-list"></div>
+	</section>
+
+	<script>
+		function saveComment() {
+			var name = document.getElementById('name').value;
+			var comment = document.getElementById('comment').value;
+
+			// چک کردن مقادیر خالی
+			if (name.trim() === '' || comment.trim() === '') {
+				alert('لطفا نام و نظر خود را وارد کنید.');
+				return;
+			}
+
+			// ایجاد شیء برای نظر جدید
+			var newComment = {
+				name: name,
+				comment: comment
+			};
+
+			// دریافت نظرات قبلی از localStorage
+			var comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+			// اضافه کردن نظر جدید به آرایه نظرات
+			comments.push(newComment);
+
+			// ذخیره نظرات در localStorage
+			localStorage.setItem('comments', JSON.stringify(comments));
+
+			// بازسازی نمایش نظرات
+			displayComments();
+		}
+
+		function displayComments() {
+			// دریافت نظرات از localStorage
+			var comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+			// ایجاد HTML برای نمایش نظرات
+			var html = '';
+			for (var i = 0; i < comments.length; i++) {
+				html += '<div class="comment">';
+				html += '<h3>' + comments[i].name + '</h3>';
+				html += '<p>' + comments[i].comment + '</p>';
+				html += '</div>';
+			}
+
+			// نمایش نظرات در صفحه
+			document.getElementById('comments-list').innerHTML = html;
+		}
+
+		// نمایش نظرات هنگام بارگیری صفحه
+		document.addEventListener('DOMContentLoaded', function() {
+			displayComments();
+		});
+	</script>
+</body>
+</html>

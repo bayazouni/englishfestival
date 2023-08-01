@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Source codes</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+<style>.comment {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.comment-content p {
+  margin: 0;
+}
+
+	#cover{
+ max-width: 100%;
+  height: auto;
+}
+		
+
+</style>
+</head>
+<body>
+	<header>
+		<h1>Source codes</h1>
+	</header>
+	<section id="cover-image">
+		<img src="1.jpg" alt="تصویر اول" style=" width: 500px;
+        height: 500px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">picture (1)</p>
+
+
+		<img src="2.jpg" alt="تصویر دوم" style=" width: 500px;
+        height: 500px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">picture (2)</p>
+
+
+<img src="3.jpg" alt="تصویر سوم" style=" width: 500px;
+        height: 500px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">picture (3)</p>
+
+
+<img src="4.jpg" alt="تصویر چهارم" style=" width: 500px;
+        height: 400px;  
+  justify-content: center;">
+
+<p style="text-align: center; font-size: 24px;">picture (4)</p>
+		
+	</section>
+		
+	
+	<section id="comments">
+		<h2>Comments</h2>
+		<form onsubmit="event.preventDefault(); saveComment();">
+			<label for="name">name:</label>
+			<input type="text" id="name" name="name"><br><br>
+			<label for="comment">Comment :</label><br>
+			<textarea id="comment" name="comment" rows="5" cols="40"></textarea><br><br>
+			<input type="submit" value="submit">
+		</form>
+		<div id="comments-list"></div>
+	</section>
+
+	<script>
+		function saveComment() {
+			var name = document.getElementById('name').value;
+			var comment = document.getElementById('comment').value;
+
+			// چک کردن مقادیر خالی
+			if (name.trim() === '' || comment.trim() === '') {
+				alert('لطفا نام و نظر خود را وارد کنید.');
+				return;
+			}
+
+			// ایجاد شیء برای نظر جدید
+			var newComment = {
+				name: name,
+				comment: comment
+			};
+
+			// دریافت نظرات قبلی از localStorage
+			var comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+			// اضافه کردن نظر جدید به آرایه نظرات
+			comments.push(newComment);
+
+			// ذخیره نظرات در localStorage
+			localStorage.setItem('comments', JSON.stringify(comments));
+
+			// بازسازی نمایش نظرات
+			displayComments();
+		}
+
+		function displayComments() {
+			// دریافت نظرات از localStorage
+			var comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+			// ایجاد HTML برای نمایش نظرات
+			var html = '';
+			for (var i = 0; i < comments.length; i++) {
+				html += '<div class="comment">';
+				html += '<h3>' + comments[i].name + '</h3>';
+				html += '<p>' + comments[i].comment + '</p>';
+				html += '</div>';
+			}
+
+			// نمایش نظرات در صفحه
+			document.getElementById('comments-list').innerHTML = html;
+		}
+
+		// نمایش نظرات هنگام بارگیری صفحه
+		document.addEventListener('DOMContentLoaded', function() {
+			displayComments();
+		});
+	</script>
+</body>
+</html>
